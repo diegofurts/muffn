@@ -26,26 +26,26 @@ from datagenerator import DataGenerator
 def define_architecture(inputsize):
 
   in_x1 = Input(shape=inputsize)
-  x1 = Conv2D(32, (3, 3), activation='relu', padding='same')(in_x1)
+  x1 = Conv2D(32, (3, 3), activation="relu", padding="same")(in_x1)
   x1 = BatchNormalization()(x1)
-  x1 = MaxPooling2D((1, 4), padding='same', name='x1')(x1)
+  x1 = MaxPooling2D((1, 4), padding="same", name="x1")(x1)
 
   inception_a1 = BatchNormalization()(x1)
-  inception_a1 = Conv2D(32, (1, 1), activation='relu', name='inception_a1')(inception_a1)
+  inception_a1 = Conv2D(32, (1, 1), activation="relu", name="inception_a1")(inception_a1)
 
   inception_a2 = BatchNormalization()(x1)
-  inception_a2 = Conv2D(32, (1, 1), activation='relu')(inception_a2)
+  inception_a2 = Conv2D(32, (1, 1), activation="relu")(inception_a2)
   inception_a2 = BatchNormalization()(inception_a2)
-  inception_a2 = Conv2D(32, (3, 3), activation='relu', padding='same', name='inception_a2')(inception_a2)
+  inception_a2 = Conv2D(32, (3, 3), activation="relu", padding="same", name="inception_a2")(inception_a2)
 
   inception_a3 = BatchNormalization()(x1)
-  inception_a3 = Conv2D(32, (1, 1), activation='relu')(inception_a3)
+  inception_a3 = Conv2D(32, (1, 1), activation="relu")(inception_a3)
   inception_a3 = BatchNormalization()(inception_a3)
-  inception_a3 = Conv2D(32, (5, 5), activation='relu', padding='same', name='inception_a3')(inception_a3)
+  inception_a3 = Conv2D(32, (5, 5), activation="relu", padding="same", name="inception_a3")(inception_a3)
 
-  inception_a4 = MaxPooling2D((3, 3), padding='same', strides=1)(x1)
+  inception_a4 = MaxPooling2D((3, 3), padding="same", strides=1)(x1)
   inception_a4 = BatchNormalization()(inception_a4)
-  inception_a4 = Conv2D(32, (1, 1), activation='relu', name='inception_a4')(inception_a4)
+  inception_a4 = Conv2D(32, (1, 1), activation="relu", name="inception_a4")(inception_a4)
 
   # -----
 
@@ -53,21 +53,21 @@ def define_architecture(inputsize):
     inception_a3, inception_a4])
 
   inception_b1 = BatchNormalization()(x2)
-  inception_b1 = Conv2D(32, (1, 1), activation='relu', name='inception_b1')(inception_b1)
+  inception_b1 = Conv2D(32, (1, 1), activation="relu", name="inception_b1")(inception_b1)
 
   inception_b2 = BatchNormalization()(x2)
-  inception_b2 = Conv2D(32, (1, 1), activation='relu')(inception_b2)
+  inception_b2 = Conv2D(32, (1, 1), activation="relu")(inception_b2)
   inception_b2 = BatchNormalization()(inception_b2)
-  inception_b2 = Conv2D(32, (3, 3), activation='relu', padding='same', name='inception_b2')(inception_b2)
+  inception_b2 = Conv2D(32, (3, 3), activation="relu", padding="same", name="inception_b2")(inception_b2)
 
   inception_b3 = BatchNormalization()(x2)
-  inception_b3 = Conv2D(32, (1, 1), activation='relu')(inception_b3)
+  inception_b3 = Conv2D(32, (1, 1), activation="relu")(inception_b3)
   inception_b3 = BatchNormalization()(inception_b3)
-  inception_b3 = Conv2D(32, (5, 5), activation='relu', padding='same', name='inception_b3')(inception_b3)
+  inception_b3 = Conv2D(32, (5, 5), activation="relu", padding="same", name="inception_b3")(inception_b3)
 
-  inception_b4 = MaxPooling2D((3, 3), padding='same', strides=1)(x2)
+  inception_b4 = MaxPooling2D((3, 3), padding="same", strides=1)(x2)
   inception_b4 = BatchNormalization()(inception_b4)
-  inception_b4 = Conv2D(32, (1, 1), activation='relu', name='inception_b4')(inception_b4)
+  inception_b4 = Conv2D(32, (1, 1), activation="relu", name="inception_b4")(inception_b4)
 
   # -----
 
@@ -75,32 +75,32 @@ def define_architecture(inputsize):
     inception_b3, inception_b4])
 
   inception_c1 = BatchNormalization()(x3)
-  inception_c1 = Conv2D(32, (1, 1), activation='relu', name='inception_c1')(inception_c1)
+  inception_c1 = Conv2D(32, (1, 1), activation="relu", name="inception_c1")(inception_c1)
 
   inception_c2 = BatchNormalization()(x3)
-  inception_c2 = Conv2D(32, (1, 1), activation='relu')(inception_c2)
+  inception_c2 = Conv2D(32, (1, 1), activation="relu")(inception_c2)
   inception_c2 = BatchNormalization()(inception_c2)
-  inception_c2 = Conv2D(32, (3, 3), activation='relu', padding='same', name='inception_c2')(inception_c2)
+  inception_c2 = Conv2D(32, (3, 3), activation="relu", padding="same", name="inception_c2")(inception_c2)
 
   inception_c3 = BatchNormalization()(x3)
-  inception_c3 = Conv2D(32, (1, 1), activation='relu')(inception_c3)
+  inception_c3 = Conv2D(32, (1, 1), activation="relu")(inception_c3)
   inception_c3 = BatchNormalization()(inception_c3)
-  inception_c3 = Conv2D(32, (5, 5), activation='relu', padding='same', name='inception_c3')(inception_c3)
+  inception_c3 = Conv2D(32, (5, 5), activation="relu", padding="same", name="inception_c3")(inception_c3)
 
-  inception_c4 = MaxPooling2D((3, 3), padding='same', strides=1)(x3)
+  inception_c4 = MaxPooling2D((3, 3), padding="same", strides=1)(x3)
   inception_c4 = BatchNormalization()(inception_c4)
-  inception_c4 = Conv2D(32, (1, 1), activation='relu', name='inception_c4')(inception_c4)
+  inception_c4 = Conv2D(32, (1, 1), activation="relu", name="inception_c4")(inception_c4)
 
   # -----
 
   x4 = concatenate([x3, inception_c1, inception_c2,
     inception_c3, inception_c4])
   x4 = BatchNormalization()(x4)
-  x4 = Conv2D(32, (1, 1), activation='relu')(x4)
+  x4 = Conv2D(32, (1, 1), activation="relu")(x4)
   x4 = AveragePooling2D((2, 2), strides=2)(x4)
   x4 = BatchNormalization()(x4)
-  x4 = GlobalAveragePooling2D(name='features')(x4)
-  x4 = Dense(10, activation="softmax", name='dense')(x4)
+  x4 = GlobalAveragePooling2D(name="features")(x4)
+  x4 = Dense(10, activation="softmax", name="dense")(x4)
 
   # -----
 
@@ -110,11 +110,12 @@ def parser_args(cmd_args):
 
   parser = argparse.ArgumentParser(sys.argv[0], description="",
     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-  parser.add_argument("-f", '--files_dir', type=str, action="store", default='../files/GTZAN/',
+  parser.add_argument("-f", "--files_dir", type=str, action="store", default="../files/GTZAN/",
     help="Path to files containing the extracted features and labels")
-  parser.add_argument("-r", '--representation', type=str, action="store", default="melspec",
-    help="Type of features/representation to use for experiments")
-  parser.add_argument("-b", '--batch_size', type=int, action="store", default=16,
+  parser.add_argument("-r", "--representation", type=str, action="store", default="melspec",
+    help="Type of features/representation to use for experiments",
+    choices=["chroma", "cqt", "harms", "melfcc", "melspec", "ssm", "tempog", "tonnz"])
+  parser.add_argument("-b", "--batch_size", type=int, action="store", default=16,
     help="Batch size to train the neural network")
 
   return parser.parse_args(cmd_args)
@@ -123,8 +124,8 @@ def parser_args(cmd_args):
 args = parser_args(sys.argv[1:])
 
 files_dir = args.files_dir
-if (files_dir[-1] != '/'):
-  files_dir += '/'
+if (files_dir[-1] != "/"):
+  files_dir += "/"
 
 batch_size = args.batch_size
 repr_id = args.representation
@@ -141,7 +142,7 @@ label_encoder = preprocessing.LabelEncoder()
 encoded_labels = label_encoder.fit_transform(all_labels)
 
 # some definitions for training the NNs
-earlyStopping = EarlyStopping(monitor='val_loss', patience=20,
+earlyStopping = EarlyStopping(monitor="val_loss", patience=20,
   verbose=0, restore_best_weights=True)
 reduce_lr = ReduceLROnPlateau()
 
@@ -150,12 +151,12 @@ input_layer = (example_data.shape[0], example_data.shape[1], 1)
 n_examples = len(encoded_labels)
 n_classes = len(np.unique(encoded_labels))
 
-params = {'dim': (example_data.shape[0], example_data.shape[1]),
-          'batch_size': batch_size,
-          'n_classes': n_classes,
-          'n_channels': 1,
-          'gen_dir': files_dir+ repr_id + "/",
-          'shuffle': True}
+params = {"dim": (example_data.shape[0], example_data.shape[1]),
+          "batch_size": batch_size,
+          "n_classes": n_classes,
+          "n_channels": 1,
+          "gen_dir": files_dir+ repr_id + "/",
+          "shuffle": True}
 
 
 kf = KFold(n_splits=5, shuffle=True, random_state=42)
@@ -192,8 +193,8 @@ for train_index, test_index in kf.split(range(n_examples)):
 
   model = define_architecture(input_layer)
   model.compile(optimizer=tf.keras.optimizers.Adam(),
-    loss='categorical_crossentropy',
-    metrics=['accuracy'])
+    loss="categorical_crossentropy",
+    metrics=["accuracy"])
 
   model.fit(x = training_generator,
     validation_data = val_generator,

@@ -110,15 +110,15 @@ class MultiDataGenerator(Sequence):
         y = np.empty((self.batch_size), dtype=int)
         X = []
         for i in range (len(self.dim_list)):
-            X_temp = np.empty((batch_size, *dim_list[i], n_channels))
+            X_temp = np.empty((self.batch_size, *self.dim_list[i], self.n_channels))
             X.append(X_temp)
 
         # Generate data
         for i, ID in enumerate(list_IDs_temp):
             # Store sample
             for j in range (len(self.dim_list)):
-                this_feat = np.load(self.gen_dir + feat_list[j] + "/" + str(ID) + '.npy')
-                X[j][i] = this_feat.reshape((*self.dim[j], 
+                this_feat = np.load(self.gen_dir + self.feat_list[j] + "/" + str(ID) + '.npy')
+                X[j][i] = this_feat.reshape((*self.dim_list[j], 
                                            self.n_channels))
 
             # Store class

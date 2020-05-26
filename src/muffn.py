@@ -13,6 +13,7 @@ from sklearn.utils import shuffle
 
 import tensorflow as tf
 from tensorflow import keras
+from tensorflow.keras.layers import concatenate, Dense
 from tensorflow.keras.callbacks import Callback, EarlyStopping, ReduceLROnPlateau
 from tensorflow.keras.models import Model, load_model
 
@@ -134,13 +135,13 @@ n_classes = len(np.unique(encoded_labels))
 params = {"batch_size": batch_size,
           "n_classes": n_classes,
           "n_channels": 1,
-          "gen_dir": files_dir+ repr_id + "/",
+          "gen_dir": files_dir+ "/",
           "feat_list": feat_list,
           "shuffle": True}
 
 
 kf = KFold(n_splits=5, shuffle=True, random_state=42)
-val_kf = KFold(n_splits=10, shuffle=True, random_state=42)
+val_kf = KFold(n_splits=2, shuffle=True, random_state=42)
 
 acc = []
 k = 0
@@ -159,7 +160,9 @@ for train_index, test_index in kf.split(range(n_examples)):
     encoded_labels,
     **params)
 
-  model = define_architecture(input_layer)
+  model = define_architecture(models_dir=files_dir+"models/", 
+    models_list=feat_list, fold=k, n_classes=n_classes, 
+    fine_tune=fine_tune, early_fuse=early_fuse)
   model.compile(optimizer=tf.keras.optimizers.Adam(),
     loss="categorical_crossentropy",
     metrics=["accuracy"])
@@ -167,7 +170,7 @@ for train_index, test_index in kf.split(range(n_examples)):
   model.fit(x = training_generator,
     validation_data = val_generator,
     callbacks = [earlyStopping, reduce_lr],
-    epochs = 50)
+    epochs = 3)
 
   score, this_acc = model.evaluate(x=test_generator)
   acc.append(this_acc)

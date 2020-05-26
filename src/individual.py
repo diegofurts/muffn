@@ -23,7 +23,7 @@ from tensorflow.keras.models import Model, load_model
 from datagenerator import DataGenerator
 
 
-def define_architecture(inputsize):
+def define_architecture(inputsize, n_classes):
 
   in_x1 = Input(shape=inputsize)
   x1 = Conv2D(32, (3, 3), activation="relu", padding="same")(in_x1)
@@ -100,7 +100,7 @@ def define_architecture(inputsize):
   x4 = AveragePooling2D((2, 2), strides=2)(x4)
   x4 = BatchNormalization()(x4)
   x4 = GlobalAveragePooling2D(name="features")(x4)
-  x4 = Dense(10, activation="softmax", name="dense")(x4)
+  x4 = Dense(n_classes, activation="softmax", name="dense")(x4)
 
   # -----
 
@@ -191,7 +191,7 @@ for train_index, test_index in kf.split(range(n_examples)):
     encoded_labels,
     **params)
 
-  model = define_architecture(input_layer)
+  model = define_architecture(input_layer, n_classes)
   model.compile(optimizer=tf.keras.optimizers.Adam(),
     loss="categorical_crossentropy",
     metrics=["accuracy"])

@@ -1,5 +1,5 @@
 # Presentation
-This is a temporary repo to provide reproducibility to the results presented in the paper "On the Fusion of Multiple Audio Representation for Music Genre Classification," submitted to ISMIR2020. Here, you can find the codes for all the three steps: feature generation, individual classifier training/evaluation, and MUFFN (Multi-Feature Fusion Networks) training/evaluation.
+This is a repo to provide reproducibility to the results presented in the paper "On the Fusion of Multiple Audio Representations for Music Genre Classification," submitted to the Multi-view Representation Learning and Multi-modal Information Representation special issue of Pattern Recognition Letters. Here, you can find the codes for all the three steps: feature generation, individual classifier training/evaluation, and MUFFN (Multi-Feature Fusion Networks) training/evaluation.
 
 If the paper gets accepted, a better version of the codes will be available at the first authors' repository. Specifically, we are modifying the code to be more flexible to users that want to use MUFFN with alternative features or for different tasks.
 
